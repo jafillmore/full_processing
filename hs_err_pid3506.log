@@ -1,0 +1,23 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0xb6d64cc8, pid=3506, tid=3791
+#
+# JRE version: OpenJDK Runtime Environment (11.0.12+7) (build 11.0.12+7-post-Raspbian-2deb10u1)
+# Java VM: OpenJDK Server VM (11.0.12+7-post-Raspbian-2deb10u1, mixed mode, g1 gc, linux-)
+# Problematic frame:
+# C  [libc.so.6+0x6fcc8]
+[timeout occurred during error reporting in step "printing problematic frame"] after 30 s.
+# No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   Unknown
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant Full_processing.Full_processing
+
+Host: 

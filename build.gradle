@@ -1,0 +1,46 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'Full_processing.Full_processing'
+
+repositories {
+    flatDir {
+	dirs '/usr/local/frc/third-party/java'
+        dirs '/usr/local/lib/vmxpi'
+    }
+}
+
+dependencies {
+    compile(name: 'wpilibj', ext: 'jar')
+    compile(name: 'opencv-450', ext: 'jar')
+    compile(name: 'wpiutil', ext: 'jar')
+    compile(name: 'cscore', ext: 'jar')
+    compile(name: 'cameraserver', ext: 'jar')
+    compile(name: 'ntcore', ext: 'jar')
+    compile(name: 'vmxpi_hal_java', ext: 'jar')
+    compile(name: 'wpiHal', ext: 'jar')
+
+    runtime files(  '/usr/local/frc/third-party/java/wpilibj.jar','/usr/local/frc/third-party/java/opencv-450.jar','/usr/local/frc/third-party/java/wpiutil.jar','/usr/local/frc/third-party/java/cscore.jar','/usr/local/frc/third-party/java/cameraserver.jar','/usr/local/frc/third-party/java/ntcore.jar','/usr/local/lib/vmxpi/vmxpi_hal_java.jar','/usr/local/frc/third-party/java/wpiHal.jar')
+
+    runtime fileTree(dir: 'libs', include: '*.jar')
+
+}
+
+jar {
+    baseName = 'full_processing'
+    version =  '1.0.0'
+
+    manifest {
+        attributes (
+            'Main-Class': 'Full_processing.Full_processing'
+        )
+    }
+}
+
+run {
+    environment "LD_LIBRARY_PATH", "/usr/local/frc/third-party/lib:/usr/local/lib/vmxpi:/usr/local/share/java/opencv4:/usr/local/lib/vmxpi"
+} 
+
+
+
+compileJava

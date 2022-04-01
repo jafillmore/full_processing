@@ -1,0 +1,8 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "editor.fontSize": 20,
+    "editor.mouseWheelZoom": true,
+    "debug.console.fontSize": 20,
+    "markdown.preview.fontSize": 20,
+    "terminal.integrated.fontSize": 20
+}
