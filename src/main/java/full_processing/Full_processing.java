@@ -120,26 +120,26 @@ public class Full_processing{
 		
 		
 		/* Open connection to USB Camera (video device 0 [/dev/video0]) */
-		UsbCamera targetCamera = new UsbCamera("targetcam", "/dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0");
-		UsbCamera driveCamera = new UsbCamera("drivecam", "/dev/v4l/by-id/usb-HD_Camera_Manufacturer_Stereo_Vision_1_Stereo_Vision_1-video-index0");
+		UsbCamera targetCamera = new UsbCamera("targetcam", "/dev/v4l/by-id/usb-USB_Camera_Manufacture_H264_USB_Camera_2020052801-video-index0");
+		UsbCamera driveCamera = new UsbCamera("drivecam", "/dev/v4l/by-id/usb-Sonix_Technology_Co.__Ltd._USB_2.0_Camera_SN0001-video-index0");
 
 
 		
 
 		/* Configure Target Camera */
 		/* Note:  Higher resolution & framerate is possible, depending upon processing cpu usage */
-		int targWidth = 800;
-		int targHeight = 600;
-		int targFrames_per_sec = 30;
+		int targWidth = 320;
+		int targHeight = 180;
+		int targFrames_per_sec = 10;
 		targetCamera.setVideoMode(VideoMode.PixelFormat.kMJPEG, targWidth, targHeight, targFrames_per_sec);
 		targetCamera.setWhiteBalanceAuto();
 		targetCamera.setBrightness(3);
 		targetCamera.setExposureManual(3);
 
 		/* Configure Drive Camera */
-		int driveWidth = 800;
-		int driveHeight = 600;
-		int driveFrames_per_sec = 30;
+		int driveWidth = 320;
+		int driveHeight = 180;
+		int driveFrames_per_sec = 10;
 		driveCamera.setVideoMode(VideoMode.PixelFormat.kMJPEG, driveWidth, driveHeight, driveFrames_per_sec);
 		driveCamera.setWhiteBalanceAuto();
 		driveCamera.setBrightness(5);
