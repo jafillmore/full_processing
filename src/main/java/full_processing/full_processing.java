@@ -1,4 +1,4 @@
-package Full_processing;
+package full_processing;
 
 import java.math.BigInteger;
 import java.util.Arrays;
@@ -27,7 +27,7 @@ import edu.wpi.first.vision.VisionThread;
 
 
 
-public class Full_processing{
+public class full_processing{
 
 	static {
 		try {
@@ -186,7 +186,7 @@ public class Full_processing{
 		VideoWriter driveVideoWriter = new VideoWriter(DriveOutputVideoFilePath,
 			VideoWriter.fourcc('M', 'J', 'P', 'G'), (double)driveFrames_per_sec, driveFrameSize, true);
 
-		Size combinedFrameSize = new Size(driveWidth+targWidth, driveHeight);
+		Size combinedFrameSize = new Size(driveWidth, driveHeight+targHeight);
 		VideoWriter combinedVideoWriter = new VideoWriter(CombinedOutputVideoFilePath,
 			VideoWriter.fourcc('M', 'J', 'P', 'G'), (double)driveFrames_per_sec, combinedFrameSize, true);
 			
@@ -346,6 +346,7 @@ public class Full_processing{
 
 
 				// Overlay timestamps & orientation data onto video **
+				/* **********************************************************************
 				Imgproc.putText (
 					processedTargFrame,                          // Video targFrame
 					videoTimestampString,       	   // Text to be added
@@ -453,27 +454,29 @@ public class Full_processing{
 					0.35,                            // front scale
 					new Scalar(255, 255, 255),      // Scalar object for color (RGB)
 					2                               // Thickness
-					);	
+					);
+					
+				************************************************************/
 
 					//****************************************************************************************
 
 					if (!vmx.getIO().UART_GetBytesAvailable(uart_res_handle[0], bytes_available, vmxerr)) {
-						System.out.printf("Error getting UART bytes available.\n");
+						//System.out.printf("Error getting UART bytes available.\n");
 					} else {
 						if (bytes_available[0] == 0) {
-							System.out.printf("No UART data available.\n");
+							//System.out.printf("No UART data available.\n");
 						} else {
-							System.out.printf("Got %d bytes of UART data:  ", bytes_available[0]);
+							//System.out.printf("Got %d bytes of UART data:  ", bytes_available[0]);
 							short[] bytes_actually_read = {0};
 							if (!vmx.getIO().UART_Read(uart_res_handle[0], rcv_bytes.cast(), bytes_available[0], bytes_actually_read, vmxerr)) {
-								System.out.printf("ERROR READING RECEIVED BYTES.\n");
+								//System.out.printf("ERROR READING RECEIVED BYTES.\n");
 							} else {
-								System.out.printf(" [Bytes actually read:  %d]", bytes_actually_read[0]);
+								//System.out.printf(" [Bytes actually read:  %d]", bytes_actually_read[0]);
 								byte[] byteArray = new byte[bytes_actually_read[0]];
 								for (int j = 0; j < bytes_actually_read[0]; j++) {
 									byteArray[j] = (byte)rcv_bytes.getitem(j);
 								}
-								System.out.println(Arrays.toString(byteArray));
+								//System.out.println(Arrays.toString(byteArray));
 		
 								if(byteArray[0] == 0x59 && byteArray[1] == 0x59) {
 									int checksum = 0;
@@ -485,7 +488,7 @@ public class Full_processing{
 										strength = byteArray[4] + byteArray[5];
 									temperature = (byteArray[6] + byteArray[7])/8;
 		
-									System.out.printf("Distance %d Strenght %d temperature %d\n", distance, strength, temperature);
+									//System.out.printf("Distance %d Strenght %d temperature %d\n", distance, strength, temperature);
 									}
 		
 								}
@@ -506,10 +509,10 @@ public class Full_processing{
 
 
 			
-				System.out.println("Loop: "+ count + "  BLoop: "+ ballLoopCount[0] + "  Balls: " + ballContours[0] + " Ball X: " + ballCenterX[0] + " Ball Y: " + ballCenterY[0] + " Targets: " + targetContours[0] + " Target Cntr(x): " + targetCenterX[0] );
+				//System.out.println("Loop: "+ count + "  BLoop: "+ ballLoopCount[0] + "  Balls: " + ballContours[0] + " Ball X: " + ballCenterX[0] + " Ball Y: " + ballCenterY[0] + " Targets: " + targetContours[0] + " Target Cntr(x): " + targetCenterX[0] );
 				
 				List<Mat> src = Arrays.asList(processedDriveFrame, processedTargFrame);
-				Core.hconcat(src, combinedFrame);
+				Core.vconcat(src, combinedFrame);
 
 				//Write Frame to video 
 				if (targVideoWriter != null) {

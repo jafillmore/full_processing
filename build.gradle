@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-mainClassName = 'Full_processing.Full_processing'
+mainClassName = 'full_processing.full_processing'
 
 repositories {
     flatDir {

@@ -1,4 +1,4 @@
-package Full_processing;
+package full_processing;
 
 import java.io.File;
 import java.io.FileWriter;
